@@ -163,7 +163,8 @@ class DemoTests: XCTestCase {
       subpathsToIgnore: [],
       secret: .microsoftTranslator(secret: microsoftSubscriptionKey),
       sourceLocale: "en",
-      separateWithEmptyLine: true
+      separateWithEmptyLine: true,
+      glossaryId: nil
     )
     TranslateTaskHandler(options: translateOptions).perform()
 

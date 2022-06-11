@@ -14,6 +14,7 @@ public struct TranslateOptions {
   public let secret: Secret
   public let sourceLocale: String
   public let separateWithEmptyLine: Bool
+  public let glossaryId: String?
 }
 
 extension TranslateOptions: TomlCodable {
@@ -27,6 +28,7 @@ extension TranslateOptions: TomlCodable {
       let subpathsToIgnore = toml.array(update, translate, "subpathsToIgnore") ?? Constants.defaultSubpathsToIgnore
       let sourceLocale: String = toml.string(update, translate, "sourceLocale") ?? "en"
       let separateWithEmptyLine = toml.bool(update, translate, "separateWithEmptyLine") ?? true
+      let glossaryId = toml.string(update, translate, "glossaryId")
       let secret: Secret
       switch Translator(rawValue: translator) {
       case .microsoftTranslator, .none:
@@ -41,7 +43,8 @@ extension TranslateOptions: TomlCodable {
         subpathsToIgnore: subpathsToIgnore,
         secret: secret,
         sourceLocale: sourceLocale,
-        separateWithEmptyLine: separateWithEmptyLine
+        separateWithEmptyLine: separateWithEmptyLine,
+        glossaryId: glossaryId
       )
     }
     else {

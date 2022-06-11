@@ -12,7 +12,8 @@ class DeepLTranslatorApiTests: XCTestCase {
       texts: ["How old are you?", "Love"],
       from: .english,
       to: .german,
-      apiKey: apiKey
+      apiKey: apiKey,
+      glossaryId: nil
     )
 
     let apiProvider = ApiProvider<DeepLApi>(baseUrl: DeepLApi.baseUrl(for: .free))

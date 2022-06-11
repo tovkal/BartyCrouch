@@ -19,7 +19,8 @@ extension TranslateTaskHandler: TaskHandler {
             verbose: GlobalOptions.verbose.value,
             secret: options.secret,
             locale: options.sourceLocale,
-            separateWithEmptyLine: self.options.separateWithEmptyLine
+            separateWithEmptyLine: self.options.separateWithEmptyLine,
+            glossaryId: options.glossaryId
           )
       }
     }
