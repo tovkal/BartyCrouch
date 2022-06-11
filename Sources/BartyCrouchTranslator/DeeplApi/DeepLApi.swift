@@ -71,6 +71,7 @@ extension DeepLApi: Endpoint {
       urlParameters["source_lang"] = sourceLanguage.deepLParameterValue
       urlParameters["target_lang"] = targetLanguage.deepLParameterValue
       urlParameters["auth_key"] = .string(apiKey)
+      urlParameters["formality"] = .string("less")
     }
 
     return urlParameters
