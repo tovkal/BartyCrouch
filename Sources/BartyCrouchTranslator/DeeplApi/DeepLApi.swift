@@ -4,7 +4,7 @@ import Microya
 // Documentation can be found here: https://www.deepl.com/ja/docs-api/
 
 enum DeepLApi {
-  case translate(texts: [String], from: Language, to: Language, apiKey: String, glossaryId: String?)
+  case translate(texts: [String], from: Language, to: Language, apiKey: String, glossaryIdList: [String: String]?)
 
   static let maximumTextsPerRequest: Int = 25
   static let maximumTextsLengthPerRequest: Int = 5_000
@@ -66,15 +66,15 @@ extension DeepLApi: Endpoint {
     var urlParameters: [String: QueryParameterValue] = [:]
 
     switch self {
-    case let .translate(texts, sourceLanguage, targetLanguage, apiKey, glossaryId):
+    case let .translate(texts, sourceLanguage, targetLanguage, apiKey, glossaryIdList):
       urlParameters["text"] = .array(texts)
       urlParameters["source_lang"] = sourceLanguage.deepLParameterValue
       urlParameters["target_lang"] = targetLanguage.deepLParameterValue
       urlParameters["auth_key"] = .string(apiKey)
       urlParameters["formality"] = .string("less")
 
-      if let glossaryId = glossaryId {
-        urlParameters["glossary_id"] = .string(glossaryId)
+        if let glossaryIdList = glossaryIdList, let value = glossaryIdList[targetLanguage.rawValue] {
+        urlParameters["glossary_id"] = .string(value)
       }
     }
 

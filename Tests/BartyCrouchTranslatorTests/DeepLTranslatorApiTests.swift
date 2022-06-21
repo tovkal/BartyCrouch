@@ -13,7 +13,7 @@ class DeepLTranslatorApiTests: XCTestCase {
       from: .english,
       to: .german,
       apiKey: apiKey,
-      glossaryId: nil
+      glossaryIdList: nil
     )
 
     let apiProvider = ApiProvider<DeepLApi>(baseUrl: DeepLApi.baseUrl(for: .free))

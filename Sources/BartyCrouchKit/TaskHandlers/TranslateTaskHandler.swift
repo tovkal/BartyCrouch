@@ -20,7 +20,7 @@ extension TranslateTaskHandler: TaskHandler {
             secret: options.secret,
             locale: options.sourceLocale,
             separateWithEmptyLine: self.options.separateWithEmptyLine,
-            glossaryId: options.glossaryId
+            glossaryIdList: options.glossaryIdList
           )
       }
     }

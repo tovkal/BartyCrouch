@@ -113,7 +113,7 @@ public class CommandLineActor {
     secret: Secret,
     locale: String,
     separateWithEmptyLine: Bool,
-    glossaryId: String?
+    glossaryIdList: [String: String]?
   ) {
     let inputFilePaths =
       paths.flatMap {
@@ -141,7 +141,7 @@ public class CommandLineActor {
         override: override,
         verbose: verbose,
         separateWithEmptyLine: separateWithEmptyLine,
-        glossaryId: glossaryId
+        glossaryIdList: glossaryIdList
       )
     }
   }
@@ -432,7 +432,7 @@ public class CommandLineActor {
     override: Bool,
     verbose: Bool,
     separateWithEmptyLine: Bool,
-    glossaryId: String?
+    glossaryIdList: [String: String]?
   ) {
     var overallTranslatedValuesCount = 0
     var filesWithTranslatedValuesCount = 0
@@ -446,7 +446,7 @@ public class CommandLineActor {
           clientSecret: secret,
           separateWithEmptyLine: separateWithEmptyLine,
           override: override,
-          glossaryId: glossaryId
+          glossaryIdList: glossaryIdList
         )
 
         if verbose {

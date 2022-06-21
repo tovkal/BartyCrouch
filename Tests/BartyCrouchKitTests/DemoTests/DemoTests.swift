@@ -164,7 +164,7 @@ class DemoTests: XCTestCase {
       secret: .microsoftTranslator(secret: microsoftSubscriptionKey),
       sourceLocale: "en",
       separateWithEmptyLine: true,
-      glossaryId: nil
+      glossaryIdList: nil
     )
     TranslateTaskHandler(options: translateOptions).perform()
 

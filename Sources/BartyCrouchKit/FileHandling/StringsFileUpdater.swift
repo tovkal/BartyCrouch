@@ -258,7 +258,7 @@ public class StringsFileUpdater {
     clientSecret: Secret,
     separateWithEmptyLine: Bool,
     override: Bool = false,
-    glossaryId: String?
+    glossaryIdList: [String: String]?
   ) throws -> Int {
     guard let (sourceLanguage, sourceRegion) = extractLocale(fromPath: sourceStringsFilePath) else {
       throw MungoFatalError(
@@ -343,7 +343,7 @@ public class StringsFileUpdater {
         let updatedTargetTranslationIndex = updatedTargetTranslations.count
         updatedTargetTranslations.append(targetTranslation)
 
-        switch translator.translate(text: sourceValue, from: sourceTranslatorLanguage, to: [targetTranslatorLanguage], glossaryId: glossaryId) {
+        switch translator.translate(text: sourceValue, from: sourceTranslatorLanguage, to: [targetTranslatorLanguage], glossaryIdList: glossaryIdList) {
         case let .success(translations):
           if let translatedValue = translations.first?.translatedText {
             if !translatedValue.isEmpty {

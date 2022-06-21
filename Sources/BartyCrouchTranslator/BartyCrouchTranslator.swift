@@ -52,7 +52,7 @@ public final class BartyCrouchTranslator {
     text: String,
     from sourceLanguage: Language,
     to targetLanguages: [Language],
-    glossaryId: String?
+    glossaryIdList: [String: String]?
   ) -> Result<[Translation], MungoError> {
     switch translationService {
     case let .microsoft(subscriptionKey):
@@ -83,7 +83,7 @@ public final class BartyCrouchTranslator {
     case let .deepL(apiKey):
       var allTranslations: [Translation] = []
       for targetLanguage in targetLanguages {
-        let endpoint = DeepLApi.translate(texts: [text], from: sourceLanguage, to: targetLanguage, apiKey: apiKey, glossaryId: glossaryId)
+        let endpoint = DeepLApi.translate(texts: [text], from: sourceLanguage, to: targetLanguage, apiKey: apiKey, glossaryIdList: glossaryIdList)
         switch deepLProvider.performRequestAndWait(on: endpoint, decodeBodyTo: DeepLTranslateResponse.self) {
         case let .success(translateResponse):
           let translations: [Translation] = translateResponse.translations.map({ (targetLanguage, $0.text) })
