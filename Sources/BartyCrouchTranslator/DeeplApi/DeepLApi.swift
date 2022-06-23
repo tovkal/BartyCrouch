@@ -33,6 +33,18 @@ enum DeepLApi {
   }
 }
 
+let formalityLanguages: [String] = [
+    "DE",
+    "FR",
+    "IT",
+    "ES",
+    "NL",
+    "PL",
+    "PT-PT",
+    "PT-BR",
+    "RU",
+]
+
 extension DeepLApi: Endpoint {
   typealias ClientErrorType = DeepLTranslateErrorResponse
 
@@ -71,7 +83,10 @@ extension DeepLApi: Endpoint {
       urlParameters["source_lang"] = sourceLanguage.deepLParameterValue
       urlParameters["target_lang"] = targetLanguage.deepLParameterValue
       urlParameters["auth_key"] = .string(apiKey)
-      urlParameters["formality"] = .string("less")
+
+        if formalityLanguages.contains(targetLanguage.rawValue) {
+            urlParameters["formality"] = .string("less")
+        }
 
         if let glossaryIdList = glossaryIdList, let value = glossaryIdList[targetLanguage.rawValue] {
         urlParameters["glossary_id"] = .string(value)
