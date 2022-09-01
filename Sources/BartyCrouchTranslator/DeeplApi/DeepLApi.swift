@@ -84,7 +84,7 @@ extension DeepLApi: Endpoint {
       urlParameters["target_lang"] = targetLanguage.deepLParameterValue
       urlParameters["auth_key"] = .string(apiKey)
 
-        if formalityLanguages.contains(targetLanguage.rawValue) {
+        if formalityLanguages.contains(targetLanguage.rawValue.uppercased()) {
             urlParameters["formality"] = .string("less")
         }
 
