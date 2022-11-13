@@ -71,7 +71,12 @@ extension DeepLApi: Endpoint {
     }
 
     var method: HttpMethod {
-        .get
+        switch self {
+        case .translate:
+            return .post(
+                body: "".data(using: .utf8)!
+            )
+        }
     }
 
     var queryParameters: [String: QueryParameterValue] {
@@ -97,7 +102,7 @@ extension DeepLApi: Endpoint {
     }
 
     var headers: [String: String] {
-        ["Content-Type": "application/json"]
+        ["Content-Type": "application/x-www-form-urlencoded"]
     }
 
     static func baseUrl(for apiType: ApiType) -> URL {
